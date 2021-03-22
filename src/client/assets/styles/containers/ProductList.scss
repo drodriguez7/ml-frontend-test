@@ -1,0 +1,9 @@
+@import "../Vars.scss";
+
+.product-list {
+  padding: 0 $padding16;
+
+  .product:not(:last-child) {
+    border-bottom: 1px solid $light-gray;
+  }
+}

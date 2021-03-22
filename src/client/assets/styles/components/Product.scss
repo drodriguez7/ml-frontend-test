@@ -1,0 +1,54 @@
+@import "../Vars.scss";
+
+.product {
+  display: flex;
+  flex-direction: row;
+  padding: $padding16 0;
+
+  &__preview {
+    box-sizing: border-box;
+    margin-right: $margin16;
+    border-radius: 4px;
+    outline: none;
+
+    img {
+      height: 180px;
+      width: 180px;
+    }
+  }
+
+  &__details {
+    margin-top: $margin16;
+    display: flex;
+    flex-direction: column;
+    // width: 60%;
+    flex: 4;
+  }
+
+  &__price-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__price {
+    margin-bottom: $margin32;
+    font-size: $type24;
+    flex: 2;
+  }
+
+  &__name {
+    font-size: $type18;
+    text-decoration: none;
+    color: $black;
+    outline: none;
+  }
+
+  &__city {
+    color: $dark-gray;
+    flex: 1;
+    text-align: center;
+    font-size: $type12;
+    // margin-top: $margin32;
+  }
+}

@@ -1,0 +1,46 @@
+@import "../Vars.scss";
+
+.search-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  grid-column: 3 / 4;
+}
+
+.search-box__logo {
+  margin-right: 25px;
+  outline: none;
+}
+
+.search-box__input {
+  border: none;
+  border-radius: 3px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  font-size: $type18;
+  height: 40px;
+  outline: none;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.search-box__input::placeholder {
+  color: $gray;
+}
+
+$search-icon: "./../../static/ic_Search.png";
+
+.search-box__button {
+  background-image: url($search-icon);
+  background-repeat: no-repeat;
+  background-size: 18px;
+  background-position: center;
+  background-color: $light-gray;
+  border: 0;
+  border-radius: 3px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  height: 40px;
+  width: 44px;
+}

@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+@import "../Vars.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: $black;
+  background-color: $light-gray;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+main {
+  grid-area: main;
+  @extend .grid;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2rem minmax(320px, 1100px) 2rem 1fr;
+}
+
+.header {
+  @extend .grid;
+  background-color: $yellow;
+  grid-area: header;
+  height: 59px;
+}
+
+.container {
+  background-color: $white;
+  grid-column: 3 / 4;
+  border-radius: 4px;
+}

@@ -1,0 +1,21 @@
+@import "../Vars.scss";
+
+.loading-spinner {
+  border: 8px solid $light_gray;
+  border-radius: 50%;
+  border-top: 8px solid $blue;
+  width: 45px;
+  height: 45px;
+  // opacity: 0.5;
+  animation: spin 1s linear infinite;
+  margin: 32px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
