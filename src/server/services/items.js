@@ -46,6 +46,7 @@ const fetchItems = async (searchQuery) => {
         picture: result.thumbnail,
         condition: result.condition,
         free_shipping: result.shipping.free_shipping,
+        location: result.address.state_name,
       };
     });
   }
