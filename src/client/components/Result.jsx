@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { getProductCondition } from '../utils/helpers';
 import getFormatedPrice from '../utils/currency';
 import '../assets/styles/components/Result.scss';
 
 const Result = ({ data }) => {
   const {
+    id,
     picture,
     title,
     price,
@@ -12,11 +15,13 @@ const Result = ({ data }) => {
     condition,
   } = data;
 
+  const detailUrl = `/items/${id}`;
+
   return (
     <article className='result'>
-      <a className='result__preview' href='/'>
+      <Link className='result__preview' to={detailUrl}>
         <img alt={title} src={picture} />
-      </a>
+      </Link>
       <div className='result__details'>
         <div className='result__price-location'>
           <span className='result__price'>
@@ -26,15 +31,15 @@ const Result = ({ data }) => {
             {location}
           </span>
         </div>
-        <a href='/' className='result__name'>
+        <Link className='result__name' to={detailUrl}>
           <span>
             {title}
           </span>
           <br />
           <span>
-            {condition === 'new' ? 'Nuevo' : 'Usado'}
+            {getProductCondition(condition)}
           </span>
-        </a>
+        </Link>
       </div>
     </article>
   );
