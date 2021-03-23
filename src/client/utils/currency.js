@@ -1,4 +1,4 @@
-const getCurrency = (currency) => ('$');
+const getCurrency = (currency) => (currency === 'ARG' ? '$' : 'U$S');
 
 const formatAmount = (amount) => {
   return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -8,6 +8,4 @@ const getFormatedPrice = (currency, amount) => {
   return `${getCurrency(currency)} ${formatAmount(amount)}`;
 };
 
-export {
-  getFormatedPrice,
-};
+export default getFormatedPrice;

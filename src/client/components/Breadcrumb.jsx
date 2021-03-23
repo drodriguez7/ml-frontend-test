@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../assets/styles/components/Breadcrumd.scss';
 
 const Breadcrumd = ({ categories }) => {
@@ -13,6 +14,14 @@ const Breadcrumd = ({ categories }) => {
       }
     </section>
   );
+};
+
+Breadcrumd.propTypes = {
+  categories: PropTypes.array,
+};
+
+Breadcrumd.defaultProps = {
+  categories: [],
 };
 
 export default Breadcrumd;

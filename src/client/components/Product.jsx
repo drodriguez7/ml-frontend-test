@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import getFormatedPrice from '../utils/currency';
 import '../assets/styles/components/Product.scss';
-import { getFormatedPrice } from '../utils/currency';
 
 const Product = ({ data }) => {
   const {
@@ -10,7 +11,6 @@ const Product = ({ data }) => {
     location,
     condition,
   } = data;
-  console.log(getFormatedPrice(price.currency, price.amount));
 
   return (
     <article className='product'>
@@ -38,6 +38,19 @@ const Product = ({ data }) => {
       </div>
     </article>
   );
+};
+
+Product.propTypes = {
+  data: PropTypes.shape({
+    picture: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.shape({
+      currency: PropTypes.oneOf(['ARS', 'USD']).isRequired,
+      amount: PropTypes.number.isRequired,
+    }),
+    location: PropTypes.string.isRequired,
+    condition: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Product;
