@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import Searchbox from '../components/Searchbox';
-import ProductList from './ProductList';
+import ResultList from './ResultList';
 import useQuery from '../hooks/useQuery';
 import '../assets/styles/containers/App.scss';
 
@@ -22,7 +22,7 @@ const App = () => {
       <main>
         <Switch>
           <Route exact path='/items'>
-            <ProductList />
+            <ResultList />
           </Route>
         </Switch>
       </main>

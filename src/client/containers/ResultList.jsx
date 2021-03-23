@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchItems } from '../api/meliApi';
-import Product from '../components/Product';
+import Result from '../components/Result';
 import Breadcrumb from '../components/Breadcrumb';
 import Loading from '../components/Loading';
-import '../assets/styles/containers/ProductList.scss';
+import '../assets/styles/containers/ResultList.scss';
 
 const viewStatus = {
   loading: 'loading',
@@ -12,7 +12,7 @@ const viewStatus = {
   error: 'error',
 };
 
-const ProductList = () => {
+const ResultList = () => {
   const { search } = useLocation();
   const [items, setItems] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -40,25 +40,25 @@ const ProductList = () => {
   }, [search]);
 
   const getContent = () => {
-    const machine = {
+    const viewStates = {
       [viewStatus.loading]: () => <Loading />,
       [viewStatus.error]: () => <div>error</div>,
       [viewStatus.success]: () => items.map((item) => (
-        <Product key={item.id} data={item} />
+        <Result key={item.id} data={item} />
       )),
     };
 
-    return machine[status] ? machine[status]() : null;
+    return viewStates[status] ? viewStates[status]() : null;
   };
 
   return (
     <>
       <Breadcrumb categories={categories} />
-      <section className='container product-list'>
+      <section className='container result-list'>
         {getContent()}
       </section>
     </>
   );
 };
 
-export default ProductList;
+export default ResultList;

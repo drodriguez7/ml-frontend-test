@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import getFormatedPrice from '../utils/currency';
-import '../assets/styles/components/Product.scss';
+import '../assets/styles/components/Result.scss';
 
-const Product = ({ data }) => {
+const Result = ({ data }) => {
   const {
     picture,
     title,
@@ -13,20 +13,20 @@ const Product = ({ data }) => {
   } = data;
 
   return (
-    <article className='product'>
-      <a className='product__preview' href='/'>
+    <article className='result'>
+      <a className='result__preview' href='/'>
         <img alt={title} src={picture} />
       </a>
-      <div className='product__details'>
-        <div className='product__price-location'>
-          <span className='product__price'>
+      <div className='result__details'>
+        <div className='result__price-location'>
+          <span className='result__price'>
             {getFormatedPrice(price.currency, price.amount)}
           </span>
-          <span className='product__city'>
+          <span className='result__city'>
             {location}
           </span>
         </div>
-        <a href='/' className='product__name'>
+        <a href='/' className='result__name'>
           <span>
             {title}
           </span>
@@ -40,7 +40,7 @@ const Product = ({ data }) => {
   );
 };
 
-Product.propTypes = {
+Result.propTypes = {
   data: PropTypes.shape({
     picture: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -53,4 +53,4 @@ Product.propTypes = {
   }).isRequired,
 };
 
-export default Product;
+export default Result;
