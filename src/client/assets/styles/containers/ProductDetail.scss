@@ -1,0 +1,9 @@
+.product {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 685px 1fr;
+
+  .loading-spinner {
+    grid-column: 1 / -1;
+  }
+}
