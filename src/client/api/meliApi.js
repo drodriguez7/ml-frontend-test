@@ -13,7 +13,7 @@ const fetchItems = (searchValue) => {
 };
 
 const fetchItem = (id) => {
-  console.log('fetch item');
+  return axiosInstance.get(`/api/items/${id}`);
 };
 
 export {
