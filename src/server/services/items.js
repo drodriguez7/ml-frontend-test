@@ -67,6 +67,11 @@ const fetchItem = async (id) => {
   const itemData = item.data;
   const descriptionData = description.data;
 
+  const categoryResponse = await meliApi.get(`/categories/${itemData.category_id}`);
+  const categoryData = categoryResponse.data;
+
+  const categories = categoryData.path_from_root.map((category) => (category.name));
+
   return {
     ...signature,
     item: {
@@ -82,6 +87,7 @@ const fetchItem = async (id) => {
       sold_quantity: itemData.sold_quantity,
       description: descriptionData.plain_text,
     },
+    categories,
   };
 };
 
