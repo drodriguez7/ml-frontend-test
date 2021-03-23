@@ -1,4 +1,4 @@
-const getCurrency = (currency) => (currency === 'ARG' ? '$' : 'U$S');
+const getCurrency = (currency) => (currency === 'ARS' ? '$' : 'U$S');
 
 const formatAmount = (amount) => {
   return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
