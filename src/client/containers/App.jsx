@@ -12,7 +12,7 @@ const App = (props) => {
   const history = useHistory();
   const query = useQuery();
 
-  const querySearch = query.get('search') || '';
+  const querySearch = query.get('search');
 
   const handleSearch = () => {
     if (querySearch === searchValue) {
@@ -24,7 +24,10 @@ const App = (props) => {
   };
 
   useEffect(() => {
-    setSearchValue(querySearch);
+    if (location.pathname === '/') {
+      setSearchValue('');
+    }
+
   }, [location]);
 
   return (
