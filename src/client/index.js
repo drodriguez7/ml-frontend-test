@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { renderRoutes } from 'react-router-config';
 import { BrowserRouter } from 'react-router-dom';
-import App from './containers/App';
+import routes from './routes/routes';
 
 ReactDOM.render((
   <BrowserRouter>
-    <App />
+    {renderRoutes(routes)}
   </BrowserRouter>
 ), document.getElementById('app'));

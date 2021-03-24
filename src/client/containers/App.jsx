@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 import Searchbox from '../components/Searchbox';
-import ResultList from './ResultList';
-import ProductDetail from './ProductDetail';
 import useQuery from '../hooks/useQuery';
 import '../assets/styles/containers/App.scss';
 
-const App = () => {
+const App = (props) => {
+  const { route } = props;
   const [searchValue, setSearchValue] = useState();
   const location = useLocation();
   const history = useHistory();
@@ -35,14 +35,7 @@ const App = () => {
         value={searchValue}
       />
       <main>
-        <Switch>
-          <Route exact path='/items'>
-            <ResultList />
-          </Route>
-          <Route exact path='/items/:id'>
-            <ProductDetail />
-          </Route>
-        </Switch>
+        {renderRoutes(route.routes)}
       </main>
     </>
   );
