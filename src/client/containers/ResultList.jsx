@@ -4,6 +4,7 @@ import { fetchItems } from '../api/meliApi';
 import Result from '../components/Result';
 import Breadcrumb from '../components/Breadcrumb';
 import Loading from '../components/Loading';
+import ErrorMessage from '../components/ErrorMessage';
 import '../assets/styles/containers/ResultList.scss';
 
 const viewStatus = {
@@ -42,7 +43,7 @@ const ResultList = () => {
   const getContent = () => {
     const viewStates = {
       [viewStatus.loading]: () => <Loading />,
-      [viewStatus.error]: () => <div>error</div>,
+      [viewStatus.error]: () => <ErrorMessage />,
       [viewStatus.success]: () => items.map((item) => (
         <Result key={item.id} data={item} />
       )),
