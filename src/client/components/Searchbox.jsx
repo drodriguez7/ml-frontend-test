@@ -1,16 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import logo from '../assets/static/Logo_ML.png';
 import '../assets/styles/components/Searchbox.scss';
 
-const Searchbox = ({ value, onSubmit }) => {
-  const inputRef = useRef(null);
-
+const Searchbox = ({ value, onSubmit, onChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    onSubmit(inputRef.current.value);
+    onSubmit();
   };
 
   return (
@@ -23,12 +20,12 @@ const Searchbox = ({ value, onSubmit }) => {
           />
         </Link>
         <input
-          defaultValue={value}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
           className='search-box__input'
           type='text'
           placeholder='Nunca dejes de buscar'
           required
-          ref={inputRef}
         />
         <button
           className='search-box__button'

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import Searchbox from '../components/Searchbox';
 import ResultList from './ResultList';
 import ProductDetail from './ProductDetail';
@@ -7,18 +7,32 @@ import useQuery from '../hooks/useQuery';
 import '../assets/styles/containers/App.scss';
 
 const App = () => {
+  const [searchValue, setSearchValue] = useState();
+  const location = useLocation();
   const history = useHistory();
   const query = useQuery();
 
-  const handleSearch = (searchValue) => {
+  const querySearch = query.get('search') || '';
+
+  const handleSearch = () => {
+    if (querySearch === searchValue) {
+      // re-renders the page if search value is the same as the query param
+      history.go();
+      return;
+    }
     history.push(`/items?search=${searchValue}`);
   };
+
+  useEffect(() => {
+    setSearchValue(querySearch);
+  }, [location]);
 
   return (
     <>
       <Searchbox
         onSubmit={handleSearch}
-        value={query.get('search')}
+        onChange={setSearchValue}
+        value={searchValue}
       />
       <main>
         <Switch>
