@@ -78,4 +78,6 @@ jspm_packages
 # CUSTOME
 ._*
 
+# Build
 dist/
+src/server/public

@@ -22,6 +22,9 @@ if (config.env === 'development') {
 
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
+} else {
+  app.use(express.static(`${__dirname}/public`));
+  app.disable('x-powered-by');
 }
 
 itemaApi(app);
