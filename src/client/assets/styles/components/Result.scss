@@ -35,6 +35,10 @@
     margin-bottom: $margin32;
     font-size: $type24;
     flex: 2;
+
+    img {
+      margin-left: 8px;
+    }
   }
 
   &__name {

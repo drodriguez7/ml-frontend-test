@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductCondition } from '../utils/helpers';
 import getFormatedPrice from '../utils/currency';
+import freeShippingImage from '../assets/static/ic_shipping.png';
 import '../assets/styles/components/Result.scss';
 
 const Result = ({ data }) => {
@@ -13,6 +14,7 @@ const Result = ({ data }) => {
     price,
     location,
     condition,
+    free_shipping: freeShipping,
   } = data;
 
   const detailUrl = `/items/${id}`;
@@ -27,6 +29,15 @@ const Result = ({ data }) => {
         <div className='result__price-location'>
           <span className='result__price'>
             {priceIntegerPart}
+            {
+              freeShipping && (
+                <img
+                  alt='Envío gratis'
+                  title='Envío gratis'
+                  src={freeShippingImage}
+                />
+              )
+            }
           </span>
           <span className='result__city'>
             {location}
