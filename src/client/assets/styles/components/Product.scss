@@ -1,26 +1,31 @@
 @import "../Vars.scss";
 
 .product__sale-info {
-  font-size: 14px;
-  margin-bottom: 16px;
+  font-size: $type14;
+  margin-bottom: $margin16;
 }
 
 .product__name {
-  font-size: 24px;
+  font-size: $type24;
 }
 
 .product__price {
-  font-size: 46px;
+  font-size: $type46;
   margin: 32px 0;
+
+  sup {
+    font-size: $type28;
+    margin-left: 5px;
+  }
 }
 
 .product__buy-button {
-  background-color: #3483fa;
+  background-color: $blue;
   border: 0;
   border-radius: 4px;
-  color: #fff;
+  color: $white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: $type16;
   height: 45px;
   width: 100%;
 }
@@ -30,20 +35,20 @@
 }
 
 .product-description {
-  margin: 0 0 32px 32px;
+  margin: 0 0 $margin32 $margin32;
 }
 
 .product-description__title {
   font-size: 28px;
-  margin-bottom: 32px;
+  margin-bottom: $margin32;
 }
 
 .product-description__content {
-  font-size: 16px;
-  color: #999999;
+  font-size: $type16;
+  color: $gray;
   white-space: pre-wrap;
 }
 
 .product__detail {
-  margin: 32px 32px 0 0;
+  margin: $margin32 $margin32 0 0;
 }
