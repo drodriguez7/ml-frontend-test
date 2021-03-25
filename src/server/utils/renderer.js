@@ -7,6 +7,7 @@ import routes from '../../client/routes/routes';
 const setResponse = (html, manifest) => {
   const mainStyles = manifest ? manifest['main.css'] : '/assets/app.css';
   const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
+  const vendorBuild = manifest ? manifest['vendors.js'] : '/assets/vendor.js';
 
   return (`
     <!DOCTYPE html>
@@ -21,6 +22,7 @@ const setResponse = (html, manifest) => {
     <body>
       <div id="app">${html}</div>
       <script src="${mainBuild}" type="text/javascript"></script>
+      <script src="${vendorBuild}" type="text/javascript"></script>
     </body>
     </html>
   `);

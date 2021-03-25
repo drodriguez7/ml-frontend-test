@@ -3,10 +3,9 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const config = require('./src/server/config');
 
-require('dotenv').config();
-
-const isDev = process.env.ENV === 'development';
+const { isDev } = config;
 const entry = ['./src/client/index.js'];
 
 if (isDev) {
@@ -15,14 +14,31 @@ if (isDev) {
 
 module.exports = {
   entry,
-  mode: process.env.ENV,
+  mode: isDev ? 'development' : 'production',
   output: {
+    clean: true,
     path: path.resolve(__dirname, 'src/server/public'),
     filename: isDev ? 'assets/app.js' : 'assets/app-[hash].js',
     publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          reuseExistingChunk: true,
+          priority: 1,
+          filename: isDev ? 'assets/vendor.js' : 'assets/vendor-[contenthash].js',
+          enforce: true,
+          test: /[\\/]node_modules[\\/]/,
+        },
+      },
+    },
   },
   module: {
     rules: [

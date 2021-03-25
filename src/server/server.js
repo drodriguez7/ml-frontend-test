@@ -12,7 +12,7 @@ const PORT = config.port;
 const app = express();
 app.use(cors());
 
-if (config.env === 'development') {
+if (config.isDev) {
   console.log('Development config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
