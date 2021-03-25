@@ -6,6 +6,7 @@ import webpack from 'webpack';
 import config from './config';
 import itemaApi from './api/itemsApi';
 import renderApp from './utils/renderer';
+import getManifest from './getManifest';
 
 const PORT = config.port;
 const app = express();
@@ -23,6 +24,10 @@ if (config.env === 'development') {
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
+  app.use((req, res, next) => {
+    if (!req.hashManifest) req.hashManifest = getManifest();
+    next();
+  });
   app.use(express.static(`${__dirname}/public`));
   app.disable('x-powered-by');
 }

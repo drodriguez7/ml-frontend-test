@@ -4,7 +4,10 @@ import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import routes from '../../client/routes/routes';
 
-const setResponse = (html) => {
+const setResponse = (html, manifest) => {
+  const mainStyles = manifest ? manifest['main.css'] : '/assets/app.css';
+  const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
+
   return (`
     <!DOCTYPE html>
     <html lang="es">
@@ -13,11 +16,11 @@ const setResponse = (html) => {
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Test Mercado Libre</title>
-      <link rel="stylesheet" href="/assets/app.css" type="text/css">
+      <link rel="stylesheet" href="${mainStyles}" type="text/css">
     </head>
     <body>
       <div id="app">${html}</div>
-      <script src="/assets/app.js" type="text/javascript"></script>
+      <script src="${mainBuild}" type="text/javascript"></script>
     </body>
     </html>
   `);
@@ -30,7 +33,7 @@ const renderApp = (req, res) => {
     </StaticRouter>,
   );
 
-  res.send(setResponse(html));
+  res.send(setResponse(html, req.hashManifest));
 };
 
 export default renderApp;
