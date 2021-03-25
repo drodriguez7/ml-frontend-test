@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 require('dotenv').config();
 
@@ -32,14 +33,6 @@ module.exports = {
         },
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-        ],
-      },
-      {
         test: /\.(s*)css$/,
         use: [
           {
@@ -64,6 +57,11 @@ module.exports = {
   },
   plugins: [
     isDev ? new webpack.HotModuleReplacementPlugin() : () => { },
+    isDev ? () => { } :
+      new CompressionWebpackPlugin({
+        test: /\.js$|\.css$/,
+        filename: '[path][base].gz',
+      }),
     new MiniCssExtractPlugin({
       filename: 'assets/app.css',
     }),
