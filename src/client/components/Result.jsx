@@ -16,6 +16,7 @@ const Result = ({ data }) => {
   } = data;
 
   const detailUrl = `/items/${id}`;
+  const [priceIntegerPart] = getFormatedPrice(price.currency, price.amount);
 
   return (
     <article className='result'>
@@ -25,7 +26,7 @@ const Result = ({ data }) => {
       <div className='result__details'>
         <div className='result__price-location'>
           <span className='result__price'>
-            {getFormatedPrice(price.currency, price.amount)}
+            {priceIntegerPart}
           </span>
           <span className='result__city'>
             {location}

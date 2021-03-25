@@ -16,6 +16,8 @@ const Product = ({ data }) => {
     description,
   } = data;
 
+  const [integerPart, decimals] = getFormatedPrice(price.currency, price.amount, price.decimals);
+
   return (
     <>
       <img src={picture} className='product-detail__image' alt={title} />
@@ -27,7 +29,8 @@ const Product = ({ data }) => {
           {title}
         </h2>
         <div className='product__price'>
-          {getFormatedPrice(price.currency, price.amount)}
+          {integerPart}
+          <sup>{decimals}</sup>
         </div>
         <button className='product__buy-button' type='button'>
           Comprar

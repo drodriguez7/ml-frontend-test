@@ -67,6 +67,17 @@ const fetchItem = async (id) => {
   const itemData = item.data;
   const descriptionData = description.data;
 
+  const price = {
+    amount: itemData.price,
+    currency: itemData.currency_id,
+    decimals: 2,
+  };
+
+  const currencyResponse = await meliApi.get(`/currencies/${itemData.currency_id}`);
+  const currencyData = currencyResponse.data;
+
+  price.decimals = currencyData.decimal_places;
+
   const categoryResponse = await meliApi.get(`/categories/${itemData.category_id}`);
   const categoryData = categoryResponse.data;
 
@@ -77,10 +88,7 @@ const fetchItem = async (id) => {
     item: {
       id: itemData.id,
       title: itemData.title,
-      price: {
-        currency: itemData.currency_id,
-        ...getPrice(itemData.price),
-      },
+      price,
       picture: itemData.thumbnail,
       condition: itemData.condition,
       free_shipping: itemData.shipping.free_shipping,
